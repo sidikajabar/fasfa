@@ -4,7 +4,7 @@ Jika Anda mengalami error saat deploy di Railway, berikut solusinya:
 
 ## ❌ Error yang Mungkin Terjadi
 
-### Error: `undefined variable 'npm'`
+### Error 1: `undefined variable 'npm'`
 
 ```
 error: undefined variable 'npm'
@@ -12,6 +12,16 @@ at /app/.nixpacks/nixpkgs-ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7.nix:19:19
 ```
 
 **Penyebab:** Nixpacks configuration issue dengan npm package.
+
+### Error 2: `npm ci can only install with existing package-lock.json`
+
+```
+npm error The `npm ci` command can only install with an existing package-lock.json
+```
+
+**Penyebab:** File `package-lock.json` tidak ada di repository.
+
+**SOLUSI:** File `package-lock.json` sudah disediakan. Pastikan file ini ada saat push ke GitHub!
 
 ## ✅ Solusi
 
@@ -172,11 +182,12 @@ railway variables set MIN_BUY_USD=100
 
 ## 📝 Checklist Final
 
-Sebelum deploy, pastikan:
+Sebelum deploy, pastikan file-file ini ada:
 
-- [ ] `package.json` ada dan valid
-- [ ] `index-railway.js` ada
-- [ ] `railway.json` ada dengan config minimal
+- [ ] `package.json` ✓
+- [ ] `package-lock.json` ✓ (PENTING!)
+- [ ] `index-railway.js` ✓
+- [ ] `railway.json` ✓
 - [ ] **TIDAK** ada `nixpacks.toml` (hapus!)
 - [ ] Environment variables siap
 - [ ] Bot token dan chat ID valid
